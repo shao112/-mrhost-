@@ -1,0 +1,59 @@
+.left .container{
+    width: 340px;
+    height: 470px;
+    /* padding-left: 90px; */
+}
+.one{
+    border-bottom: solid;
+    margin-bottom: 26px;
+}
+.two{
+    margin-bottom: 10px;
+}
+.filter{
+    height: 400px;
+}
+.filter .icon{
+    position: absolute;
+    left: 301px;
+    top: 61px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 15px;
+    border-color: #a2a6ab transparent transparent transparent;
+}
+.total_num{
+    height: 80px;
+    font-size: 1.6rem;
+}
+.evaluation{
+    position: absolute;
+    right: 67px;
+    top: 13px;
+    font-size: 1.1rem;
+}
+.point{
+    position: absolute;
+    right: 15px;
+    top: 13px;
+    font-size: 1.1rem !important;
+}
+.card{
+    display: block !important;
+    width: 710px;
+    /* height: 254px; */
+    height: fit-content;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.cover{
+    width: 300px;
+    object-fit: cover;
+    float: left;
+}
+.information{
+    width: 400px;
+    padding: 13px 5px 0 0;
+    float: right;
+}

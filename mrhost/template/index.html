@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mrhost</title>
+    <link rel="stylesheet" href="../resource/css/style.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+     <!-- vue -->
+    <script src="../resource/js/vue.js"> </script>
+    
+</head>
+
+<body>
+    <div class="container bg-light" style="padding-top: 60px;" id="app">
+        <div class="row">
+            <div class="col-md-4 left">
+                <div class="container">
+                    <div class="one">
+                        <span class="h5 font-weight-bold">透過以下分類搜尋：</span>
+                    </div>
+                    
+                    <div class="filter">
+                        <div class="two">
+                            <span>飯店設施</span>
+                            <div class="icon" type="button" data-toggle="collapse" data-target="#collapseFilter"></div>
+                        </div>
+                        
+                        
+                        <div class="collapse" id="collapseFilter">
+                            隱藏內容
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="col-md-8 right">
+                <div class="total_num">
+                    找到5間飯店
+                </div>
+
+                <div class="card" v-for="item in house">
+                    <img :src="item.url" class="cover img-fluid">
+                    <div class="information">
+                        <!-- 評價 -->
+                        <span class="evaluation">{{ eva(item.point) }}</span>
+                        <span class="badge badge-danger point">{{ item.point }}</span>
+                        <!-- 詳細資訊 -->
+                        <h4 class="name font-weight-bold">{{ item.name }}</h4>
+                        <span class="h6 font-weight-bold text-danger region">{{ item.region }}</span>
+                        <h6 class="description">{{ item.description }}</h6>
+
+                        <h5>NT$ {{ item.price }}
+                            <span style="font-size:1rem">起</span>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<script>
+
+    let vue = new Vue({
+        el: '#app',
+        data: {
+            search: "",
+            type: "",
+            house: [
+                {
+                    name:"布達佩斯飯店",
+                    url:"../resource/img/1.jpg",
+                    description:"Baross酒店擁有一幢位於內部庭院的古式建築，距離Keleti Railway Station火車站僅有50米，提供現代化的客房。客人可以搭乘Keleti Underground地鐵站（M2和M4號線）以及電車和巴士前往多瑙河（Danube River）的河岸和城市的主要景點。",
+                    point:7.7,
+                    region:"布達佩斯",
+                    price:1897
+                },
+                {
+                    name:"卡林布什酒店",
+                    url:"../resource/img/2.jpg",
+                    description:"卡林布什酒店於 1899 年開業，位於澳洲維多利亞省，屬於社交友善酒店，於 2019 年重新開幕。",
+                    point:4.6,
+                    region:"澳洲 維多利亞",
+                    price:1600
+                },
+                {
+                    name:"阿爾卑斯飯店",
+                    url:"../resource/img/3.jpg",
+                    description:"住宿提供免費Wi-Fi和免費停車服務，讓您保持連線，並來去自如。 住宿位於雅加達芒甘杜阿的絕佳位置，讓您輕鬆探索熱門景點和餐飲選擇。 離開前，別忘了探訪知名的National Monument (MONAS)。 這間高品質飯店被評為3星級，提供客人按摩、Spa和餐廳。",
+                    point:7.2,
+                    region:"印度尼西亞 雅加達",
+                    price:429
+                },
+                {
+                    name:"富麗敦飯店",
+                    url:"../resource/img/4.jpg",
+                    description:"香港富麗敦海洋公園酒店位於香港香港島南區黃竹坑香港海洋公園水上樂園旁邊，是一間五星級的可持續發展及臨海奢華度假酒店，亦是香港首間富麗敦酒店和全球第一間富麗敦度假酒店。",
+                    point:8.1,
+                    region:"香港 南區",
+                    price:3200
+                },
+                {
+                    name:"克朗伊格爾斯堡酒店",
+                    url:"../resource/img/5.jpg",
+                    description:"這家家庭經營的溫泉酒店和毗鄰的餐廳坐落在Freudenstadt的Igelsberg區，位於黑森林北部。 歡迎您前往提供完全放鬆的休息時光。您可以在酒店的游泳池暢遊，盡情享受桑拿、按摩和美容等設施；在酒店的餐廳品嚐美味的當地特色菜餚。",
+                    point:9.2,
+                    region:"德國 弗羅伊登施塔特",
+                    price:2887
+                },
+            ],
+        },
+        methods: {
+            eva: function(n){
+                if(n >= 8){
+                    return "好極了"
+                }
+                else if(n >= 5){
+                    return "非常好"
+                }
+                else{
+                    return "好"
+                }
+            }
+        }
+    })
+</script>
+</html>
