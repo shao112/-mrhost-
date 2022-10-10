@@ -1,9 +1,4 @@
-/* .left .container{ */
-    /* border: 1px solid rgba(0,0,0,.125);; */
-    /* width: 340px; */
-    /* height: 470px; */
-    /* padding-left: 90px; */
-/* } */
+
 .one{
     border-bottom: solid;
     margin-bottom: 26px;
@@ -24,10 +19,7 @@
     border-width: 15px 15px 0 15px;
     border-color: #a2a6ab transparent transparent transparent;
 }
-.total_num{
-    height: 80px;
-    font-size: 1.6rem;
-}
+
 .evaluation{
     position: absolute;
     right: 67px;

@@ -73,9 +73,6 @@
                 
             </div>
             <div class="col-md-8 right">
-                <div class="total_num">
-                    找到 {{ num() }} 間飯店
-                </div>
 
                 <div class="card" v-for="item in Filter">
                     <img :src="item.url" class="cover img-fluid">
@@ -167,20 +164,7 @@
                 else{
                     return "好"
                 }
-            },
-
-            num: function(){
-                return this.house.length;
-            },
-
-            // display: function(fac){
-            //     const facs = this.facilities.length ? _.intersection(fac, this.facilities).length : true;
-            //     if (sizes) {
-            //         return true;
-            //     } else {
-            //         return false;
-            //     }
-            // }
+            }
         },
         computed: {
             Filter() {
@@ -197,18 +181,9 @@
 
                         for(let n = 0; n < this.house.length; n++){
 
-                            // if(JSON.stringify(this.house[n].facilities) === JSON.stringify(this.facilities) ){
-                            //     console.log("完全依樣")
-                            //     console.log("有符合!");
-                            //     return this.house.filter(box => {
-                            //         return box.facilities.includes(this.facilities[i]);
-                            //     })
-                            // }
-                            // 如果篩選條件小於該 house 的條件，有
                             if(this.facilities.length <= this.house[n].facilities.length){
-                                // 交集
+                                
                                 temp = this.facilities.filter(value => this.house[n].facilities.indexOf(value) !== -1);
-                                // 篩選 house 有交集的
                                 console.log("這些是有交集的" + this.house[n].name);
                                 console.log(temp);
                                 return this.house.filter(box => {
@@ -216,13 +191,6 @@
                                 })
                                 
                             }
-                            // else if(this.house[n].facilities.includes(this.facilities[i])){
-                            //     console.log("有符合!");
-                            //     return this.house.filter(box => {
-                            //         // return box.facilities.indexOf(this.facilities);
-                            //         return box.facilities.includes(this.facilities[i]);
-                            //     })
-                            // }
                         }
                     }
                 }
