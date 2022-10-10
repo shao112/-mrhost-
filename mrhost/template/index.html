@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="../resource/css/style.css">
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-     <!-- vue -->
-    <script src="../resource/js/vue.js"> </script>
+     
     
 </head>
 
@@ -17,20 +16,56 @@
     <div class="container bg-light" style="padding-top: 60px;" id="app">
         <div class="row">
             <div class="col-md-4 left">
-                <div class="container">
+                <div class="container" style="border:1px solid rgba(0,0,0,.125);">
                     <div class="one">
                         <span class="h5 font-weight-bold">透過以下分類搜尋：</span>
                     </div>
                     
                     <div class="filter">
                         <div class="two">
-                            <span>飯店設施</span>
+                            <span class="font-weight-bold">飯店設施</span>
                             <div class="icon" type="button" data-toggle="collapse" data-target="#collapseFilter"></div>
                         </div>
                         
                         
                         <div class="collapse" id="collapseFilter">
-                            隱藏內容
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="免費無線網路" id="Check1" v-model="facilities">
+                                <label class="form-check-label" for="Check1">
+                                    免費無線網路
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="禁菸客房" id="Check2" v-model="facilities">
+                                <label class="form-check-label" for="Check2">
+                                    禁菸客房
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="廚房" id="Check3" v-model="facilities">
+                                <label class="form-check-label" for="Check3">
+                                    廚房
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="洗衣房" id="Check4" v-model="facilities">
+                                <label class="form-check-label" for="Check4">
+                                    洗衣房
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="停車場" id="Check5" v-model="facilities">
+                                <label class="form-check-label" for="Check5">
+                                    停車場
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="寵物友善" id="Check6" v-model="facilities">
+                                <label class="form-check-label" for="Check6">
+                                    寵物友善
+                                </label>
+                            </div>
+                            <!-- {{ facilities }} -->
                         </div>
                     </div>
                     
@@ -39,10 +74,10 @@
             </div>
             <div class="col-md-8 right">
                 <div class="total_num">
-                    找到5間飯店
+                    找到 {{ num() }} 間飯店
                 </div>
 
-                <div class="card" v-for="item in house">
+                <div class="card" v-for="item in Filter">
                     <img :src="item.url" class="cover img-fluid">
                     <div class="information">
                         <!-- 評價 -->
@@ -53,15 +88,15 @@
                         <span class="h6 font-weight-bold text-danger region">{{ item.region }}</span>
                         <h6 class="description">{{ item.description }}</h6>
 
-                        <h5>NT$ {{ item.price }}
-                            <span style="font-size:1rem">起</span>
-                        </h5>
+                        <h5>NT$ {{ item.price }}  <span style="font-size:1rem">起</span></h5>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<!-- vue -->
+<script src="../resource/js/vue.js"> </script>
 <!-- bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
@@ -71,8 +106,7 @@
     let vue = new Vue({
         el: '#app',
         data: {
-            search: "",
-            type: "",
+            facilities: [],
             house: [
                 {
                     name:"布達佩斯飯店",
@@ -80,7 +114,8 @@
                     description:"Baross酒店擁有一幢位於內部庭院的古式建築，距離Keleti Railway Station火車站僅有50米，提供現代化的客房。客人可以搭乘Keleti Underground地鐵站（M2和M4號線）以及電車和巴士前往多瑙河（Danube River）的河岸和城市的主要景點。",
                     point:7.7,
                     region:"布達佩斯",
-                    price:1897
+                    price:1897,
+                    facilities:["免費無線網路","禁菸客房","廚房","洗衣房","停車場"]
                 },
                 {
                     name:"卡林布什酒店",
@@ -88,7 +123,8 @@
                     description:"卡林布什酒店於 1899 年開業，位於澳洲維多利亞省，屬於社交友善酒店，於 2019 年重新開幕。",
                     point:4.6,
                     region:"澳洲 維多利亞",
-                    price:1600
+                    price:1600,
+                    facilities:["免費無線網路","停車場"]
                 },
                 {
                     name:"阿爾卑斯飯店",
@@ -96,7 +132,8 @@
                     description:"住宿提供免費Wi-Fi和免費停車服務，讓您保持連線，並來去自如。 住宿位於雅加達芒甘杜阿的絕佳位置，讓您輕鬆探索熱門景點和餐飲選擇。 離開前，別忘了探訪知名的National Monument (MONAS)。 這間高品質飯店被評為3星級，提供客人按摩、Spa和餐廳。",
                     point:7.2,
                     region:"印度尼西亞 雅加達",
-                    price:429
+                    price:429,
+                    facilities:["免費無線網路","停車場"]
                 },
                 {
                     name:"富麗敦飯店",
@@ -104,7 +141,8 @@
                     description:"香港富麗敦海洋公園酒店位於香港香港島南區黃竹坑香港海洋公園水上樂園旁邊，是一間五星級的可持續發展及臨海奢華度假酒店，亦是香港首間富麗敦酒店和全球第一間富麗敦度假酒店。",
                     point:8.1,
                     region:"香港 南區",
-                    price:3200
+                    price:3200,
+                    facilities:["免費無線網路","洗衣房"]
                 },
                 {
                     name:"克朗伊格爾斯堡酒店",
@@ -112,11 +150,13 @@
                     description:"這家家庭經營的溫泉酒店和毗鄰的餐廳坐落在Freudenstadt的Igelsberg區，位於黑森林北部。 歡迎您前往提供完全放鬆的休息時光。您可以在酒店的游泳池暢遊，盡情享受桑拿、按摩和美容等設施；在酒店的餐廳品嚐美味的當地特色菜餚。",
                     point:9.2,
                     region:"德國 弗羅伊登施塔特",
-                    price:2887
+                    price:2887,
+                    facilities:["免費無線網路","停車場"]
                 },
             ],
         },
         methods: {
+
             eva: function(n){
                 if(n >= 8){
                     return "好極了"
@@ -126,6 +166,65 @@
                 }
                 else{
                     return "好"
+                }
+            },
+
+            num: function(){
+                return this.house.length;
+            },
+
+            // display: function(fac){
+            //     const facs = this.facilities.length ? _.intersection(fac, this.facilities).length : true;
+            //     if (sizes) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // }
+        },
+        computed: {
+            Filter() {
+
+                if (this.facilities.length == 0) {
+                    return this.house;
+                } else {
+                    console.log("有設施");
+
+                    // 有選哪些設施
+                    for(let i = 0; i < this.facilities.length; i++){
+                        console.log("第" + i + "個");
+                        console.log(this.facilities[i]);
+
+                        for(let n = 0; n < this.house.length; n++){
+
+                            // if(JSON.stringify(this.house[n].facilities) === JSON.stringify(this.facilities) ){
+                            //     console.log("完全依樣")
+                            //     console.log("有符合!");
+                            //     return this.house.filter(box => {
+                            //         return box.facilities.includes(this.facilities[i]);
+                            //     })
+                            // }
+                            // 如果篩選條件小於該 house 的條件，有
+                            if(this.facilities.length <= this.house[n].facilities.length){
+                                // 交集
+                                temp = this.facilities.filter(value => this.house[n].facilities.indexOf(value) !== -1);
+                                // 篩選 house 有交集的
+                                console.log("這些是有交集的" + this.house[n].name);
+                                console.log(temp);
+                                return this.house.filter(box => {
+                                    return box.facilities.includes(this.facilities[i]);
+                                })
+                                
+                            }
+                            // else if(this.house[n].facilities.includes(this.facilities[i])){
+                            //     console.log("有符合!");
+                            //     return this.house.filter(box => {
+                            //         // return box.facilities.indexOf(this.facilities);
+                            //         return box.facilities.includes(this.facilities[i]);
+                            //     })
+                            // }
+                        }
+                    }
                 }
             }
         }
